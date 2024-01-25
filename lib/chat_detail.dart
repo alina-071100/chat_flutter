@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/DateDivider.dart';
 import 'package:flutter_application/coversation_list.dart';
 import 'package:flutter_application/models/chat_message.dart';
 
@@ -37,19 +38,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     width: 2,
                   ),
                   CircleAvatar(
-                    // backgroundColor: avatarColor,
                     // child: Center(
                     //   child: Text(
-                    //       // '${u.name.characters.first}${widget.surname.characters.first}',
-                    //       // style: TextStyle(
-                    //       //   fontSize: 20,
-                    //       //   fontWeight: FontWeight.w700,
-                    //       //   color: Colors.white,
-                    //       // ),
-                    //       ""
+                    //       '${widget.name.characters.first}${widget.surname.characters.first}',
+                    //       style: TextStyle(
+                    //         fontSize: 20,
+                    //         fontWeight: FontWeight.w700,
+                    //         color: Colors.white,
+                    //       ),
                     //       ),
                     // ),
-                    maxRadius: 30,
+                    maxRadius: 25,
                   ),
                   const SizedBox(
                     width: 12,
@@ -85,39 +84,83 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return Container(
-                
-                  padding: const EdgeInsets.only(
-                      left: 14, right: 14, top: 10, bottom: 10),
-                  child: Align(
-                    alignment: (messages[index].messageType == "receiver"
-                        ? Alignment.topLeft
-                        : Alignment.topRight),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: messages[index].messageType == 'receiver'
-                            ? const BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30),
-                                bottomLeft: Radius.circular(0),
-                                bottomRight: Radius.circular(30))
-                            : const BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30),
-                                bottomLeft: Radius.circular(30),
-                                bottomRight: Radius.circular(0)),
-                        color: (messages[index].messageType == "receiver"
-                            ? const Color(0xFFEDF2F6)
-                            : const Color(0xFF3CED78)),
+                if (index == 0) {
+                  return Column(
+                    children: [
+                      DateDivider(
+                        date: messages.first.time,
                       ),
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        messages[index].messageContent,
-                        style: const TextStyle(fontSize: 15),
+                      Container(
+                        padding: const EdgeInsets.only(
+                            left: 14, right: 14, top: 10, bottom: 10),
+                        child: Align(
+                          alignment: (messages[index].messageType == "receiver"
+                              ? Alignment.topLeft
+                              : Alignment.topRight),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  messages[index].messageType == 'receiver'
+                                      ? const BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(30),
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(30))
+                                      : const BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(30),
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(0)),
+                              color: (messages[index].messageType == "receiver"
+                                  ? const Color(0xFFEDF2F6)
+                                  : const Color(0xFF3CED78)),
+                            ),
+                            padding: const EdgeInsets.all(16),
+                            child: Text(
+                              messages[index].messageContent,
+                              style: const TextStyle(fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                } else {
+                  // Your existing message container here
+                  return Container(
+                    padding: const EdgeInsets.only(
+                        left: 14, right: 14, top: 10, bottom: 10),
+                    child: Align(
+                      alignment: (messages[index].messageType == "receiver"
+                          ? Alignment.topLeft
+                          : Alignment.topRight),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              messages[index].messageType == 'receiver'
+                                  ? const BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30),
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(30))
+                                  : const BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30),
+                                      bottomLeft: Radius.circular(30),
+                                      bottomRight: Radius.circular(0)),
+                          color: (messages[index].messageType == "receiver"
+                              ? const Color(0xFFEDF2F6)
+                              : const Color(0xFF3CED78)),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          messages[index].messageContent,
+                          style: const TextStyle(fontSize: 15),
+                        ),
                       ),
                     ),
-                  ),
-                );
+                  );
+                }
               },
             ),
             Align(

@@ -37,7 +37,7 @@ class _ConversationListState extends State<ConversationList> {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const ChatDetailPage();
+          return  ChatDetailPage();
         }));
       },
       child: Column(
@@ -61,7 +61,7 @@ class _ConversationListState extends State<ConversationList> {
                             ),
                           ),
                         ),
-                        maxRadius: 30,
+                        maxRadius: 35,
                       ),
                       SizedBox(
                         width: 12,
