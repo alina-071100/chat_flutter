@@ -3,15 +3,15 @@ import 'package:flutter_application/chat_detail.dart';
 
 class ConversationList extends StatefulWidget {
   String name;
+  String surname;
   String messageText;
-  // String imageUrl;
   String time;
   bool isMessageRead;
 
   ConversationList({
     required this.name,
+    required this.surname,
     required this.messageText,
-    // required this.imageUrl,
     required this.time,
     required this.isMessageRead,
   });
@@ -21,73 +21,88 @@ class ConversationList extends StatefulWidget {
 }
 
 class _ConversationListState extends State<ConversationList> {
+  static const List<Color> avatarColors = [
+    Colors.green,
+    Colors.red,
+    Colors.blue,
+    Colors.orange,
+  ];
+
   @override
   Widget build(BuildContext context) {
+    int userIndex =
+        (widget.name.hashCode + widget.surname.hashCode) % avatarColors.length;
+    Color avatarColor = avatarColors[userIndex];
+
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const ChatDetailPage();
         }));
       },
-      child: Container(
-        padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  CircleAvatar(
-                    // backgroundImage: NetworkImage(widget.imageUrl),
-                    maxRadius: 34,
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          widget.name,
-                          style: TextStyle(fontSize: 16),
-                        ),
-
-                        SizedBox(
-                          height: 5,
-                        ),
-
-                        Text(
-                          widget.messageText,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.grey.shade600,
-                            fontWeight: widget.isMessageRead
-                                ? FontWeight.bold
-                                : FontWeight.normal,
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: avatarColor,
+                        child: Center(
+                          child: Text(
+                            '${widget.name.characters.first}${widget.surname.characters.first}',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        Divider(
-                          thickness: 2,
+                        maxRadius: 30,
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              '${widget.name.characters} ${widget.surname.characters}',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              widget.messageText,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ],
                         ),
-                        // Divider(
-                        //   thickness: 2,
-                        // ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Text(
+                  widget.time,
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              widget.time,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight:
-                    widget.isMessageRead ? FontWeight.bold : FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
+          ),
+          const Divider(
+            thickness: 2,
+          ),
+        ],
       ),
     );
   }

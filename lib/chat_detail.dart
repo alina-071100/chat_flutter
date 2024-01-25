@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/coversation_list.dart';
 import 'package:flutter_application/models/chat_message.dart';
 
 class ChatDetailPage extends StatefulWidget {
@@ -9,6 +10,8 @@ class ChatDetailPage extends StatefulWidget {
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
+  late final ConversationList conversationList;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +36,20 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   const SizedBox(
                     width: 2,
                   ),
-                  const CircleAvatar(
-                    maxRadius: 34,
+                  CircleAvatar(
+                    // backgroundColor: avatarColor,
+                    // child: Center(
+                    //   child: Text(
+                    //       // '${u.name.characters.first}${widget.surname.characters.first}',
+                    //       // style: TextStyle(
+                    //       //   fontSize: 20,
+                    //       //   fontWeight: FontWeight.w700,
+                    //       //   color: Colors.white,
+                    //       // ),
+                    //       ""
+                    //       ),
+                    // ),
+                    maxRadius: 30,
                   ),
                   const SizedBox(
                     width: 12,
@@ -71,8 +86,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Container(
-                  // width: 288,
-                  // height: 33,
+                
                   padding: const EdgeInsets.only(
                       left: 14, right: 14, top: 10, bottom: 10),
                   child: Align(

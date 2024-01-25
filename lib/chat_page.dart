@@ -11,26 +11,33 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   List<ChatUsers> chatUsers = [
     ChatUsers(
-        name: "Виктор Власов",
-        secondaryText: "Вы: Уже сделал?",
-        time: "Вчера",),
-        // image: 'assets/avatars/avatar1.svg'),
-    ChatUsers(
-        name: "Саша Алексеев",
-        secondaryText: "Я готов",
-        time: "12.01.22",),
-        // image: 'assets/avatars/avatar2.svg'),
-    ChatUsers(
-        name: "Пётр Жаринов",
-        secondaryText: "Вы: Я вышел ",
-        time: "2 минуты назад",),
-        // image: 'assets/avatars/avatar3.svg'),
-    ChatUsers(
-        name: "Алина Жукова",
-        secondaryText: "Вы:Я вышел ",
-        time: "09:23",
+      name: "Виктор",
+      surname: 'Власов',
+      secondaryText: "Вы: Уже сделал?",
+      time: "Вчера",
     ),
-        // image: 'assets/avatars/avatar4.svg'),
+    // image: 'assets/avatars/avatar1.svg'),
+    ChatUsers(
+      name: "Саша",
+      surname: 'Алексеев',
+      secondaryText: "Я готов",
+      time: "12.01.22",
+    ),
+    // image: 'assets/avatars/avatar2.svg'),
+    ChatUsers(
+      name: "Пётр",
+      surname: 'Жаринов',
+      secondaryText: "Вы: Я вышел ",
+      time: "2 минуты назад",
+    ),
+    // image: 'assets/avatars/avatar3.svg'),
+    ChatUsers(
+      name: "Алина",
+      surname: 'Жукова',
+      secondaryText: "Вы:Я вышел ",
+      time: "09:23",
+    ),
+    // image: 'assets/avatars/avatar4.svg'),
   ];
 
   @override
@@ -88,10 +95,11 @@ class _ChatPageState extends State<ChatPage> {
               itemCount: chatUsers.length,
               shrinkWrap: true,
               padding: const EdgeInsets.only(top: 10),
-              // physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ConversationList(
                   name: chatUsers[index].name,
+                  surname: chatUsers[index].surname,
+
                   messageText: chatUsers[index].secondaryText,
                   // imageUrl: chatUsers[index].image,
                   time: chatUsers[index].time,
