@@ -34,7 +34,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     width: 2,
                   ),
                   const CircleAvatar(
-                    
                     maxRadius: 34,
                   ),
                   const SizedBox(
@@ -72,15 +71,27 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Container(
-                  padding:
-                      const EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                  // width: 288,
+                  // height: 33,
+                  padding: const EdgeInsets.only(
+                      left: 14, right: 14, top: 10, bottom: 10),
                   child: Align(
                     alignment: (messages[index].messageType == "receiver"
                         ? Alignment.topLeft
                         : Alignment.topRight),
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: messages[index].messageType == 'receiver'
+                            ? const BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                                bottomLeft: Radius.circular(0),
+                                bottomRight: Radius.circular(30))
+                            : const BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                                bottomLeft: Radius.circular(30),
+                                bottomRight: Radius.circular(0)),
                         color: (messages[index].messageType == "receiver"
                             ? const Color(0xFFEDF2F6)
                             : const Color(0xFF3CED78)),
@@ -115,7 +126,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       child: const Icon(
                         Icons.attach_file_outlined,
                         color: Colors.black,
-                        size: 20,
+                        size: 25,
                       ),
                     ),
                   ),
@@ -159,7 +170,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                             child: Icon(
                               Icons.mic_none,
                               color: Colors.black,
-                              size: 20,
+                              size: 25,
                             ),
                           ),
                         ),

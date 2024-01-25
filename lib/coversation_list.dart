@@ -4,12 +4,14 @@ import 'package:flutter_application/chat_detail.dart';
 class ConversationList extends StatefulWidget {
   String name;
   String messageText;
+  // String imageUrl;
   String time;
   bool isMessageRead;
 
   ConversationList({
     required this.name,
     required this.messageText,
+    // required this.imageUrl,
     required this.time,
     required this.isMessageRead,
   });

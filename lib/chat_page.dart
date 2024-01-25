@@ -11,15 +11,26 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   List<ChatUsers> chatUsers = [
     ChatUsers(
-        name: "Виктор Власов", secondaryText: "Вы: Уже сделал?", time: "Вчера"),
+        name: "Виктор Власов",
+        secondaryText: "Вы: Уже сделал?",
+        time: "Вчера",),
+        // image: 'assets/avatars/avatar1.svg'),
     ChatUsers(
-        name: "Саша Алексеев", secondaryText: "Я готов", time: "12.01.22"),
+        name: "Саша Алексеев",
+        secondaryText: "Я готов",
+        time: "12.01.22",),
+        // image: 'assets/avatars/avatar2.svg'),
     ChatUsers(
         name: "Пётр Жаринов",
         secondaryText: "Вы: Я вышел ",
-        time: "2 минуты назад"),
+        time: "2 минуты назад",),
+        // image: 'assets/avatars/avatar3.svg'),
     ChatUsers(
-        name: "Алина Жукова", secondaryText: "Вы:Я вышел ", time: "09:23"),
+        name: "Алина Жукова",
+        secondaryText: "Вы:Я вышел ",
+        time: "09:23",
+    ),
+        // image: 'assets/avatars/avatar4.svg'),
   ];
 
   @override
@@ -50,34 +61,34 @@ class _ChatPageState extends State<ChatPage> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Поиск",
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                       color: Color(0xFF9DB7CB),
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Iconsax.search_normal_1,
                     color: Color(0xFF9DB7CB),
                     size: 20,
                   ),
                   filled: true,
-                  fillColor: Color(0xFFEDF2F6),
-                  contentPadding: EdgeInsets.all(8),
+                  fillColor: const Color(0xFFEDF2F6),
+                  contentPadding: const EdgeInsets.all(8),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Color(0xFFEDF2F6)),
+                    borderSide: const BorderSide(color: Color(0xFFEDF2F6)),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
-            Divider(),
+            const Divider(),
             ListView.builder(
               itemCount: chatUsers.length,
               shrinkWrap: true,
-              padding: EdgeInsets.only(top: 10),
-              physics: NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.only(top: 10),
+              // physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ConversationList(
                   name: chatUsers[index].name,
