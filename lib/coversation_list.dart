@@ -37,13 +37,18 @@ class _ConversationListState extends State<ConversationList> {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return  ChatDetailPage();
+          return ChatDetailPage(
+            name: widget.name,
+            surname: widget.surname,
+            messageText: widget.messageText,
+          );
         }));
       },
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, top: 5, bottom: 5),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -51,19 +56,19 @@ class _ConversationListState extends State<ConversationList> {
                     children: <Widget>[
                       CircleAvatar(
                         backgroundColor: avatarColor,
+                        maxRadius: 30,
                         child: Center(
                           child: Text(
                             '${widget.name.characters.first}${widget.surname.characters.first}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
                             ),
                           ),
                         ),
-                        maxRadius: 35,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 12,
                       ),
                       Expanded(
@@ -72,9 +77,9 @@ class _ConversationListState extends State<ConversationList> {
                           children: <Widget>[
                             Text(
                               '${widget.name.characters} ${widget.surname.characters}',
-                              style: TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 16),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Text(
@@ -92,7 +97,7 @@ class _ConversationListState extends State<ConversationList> {
                 ),
                 Text(
                   widget.time,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                   ),
                 ),
@@ -100,7 +105,7 @@ class _ConversationListState extends State<ConversationList> {
             ),
           ),
           const Divider(
-            thickness: 2,
+            thickness: 1,
           ),
         ],
       ),

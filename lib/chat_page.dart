@@ -44,11 +44,11 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SafeArea(
+            const SafeArea(
               child: Padding(
                 padding: EdgeInsets.only(left: 16, right: 16, top: 10),
                 child: Row(
@@ -56,15 +56,15 @@ class _ChatPageState extends State<ChatPage> {
                   children: <Widget>[
                     Text(
                       "Чаты",
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                      style: 
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+              padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Поиск",

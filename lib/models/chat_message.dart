@@ -3,11 +3,14 @@ class ChatMessage {
   final String messageType;
   bool isRead;
   String time;
+  String time1;
+
   ChatMessage({
     required this.messageContent,
     required this.messageType,
     this.isRead = false,
     required this.time,
+    required this.time1,
   });
 }
 
@@ -15,12 +18,16 @@ List<ChatMessage> messages = [
   ChatMessage(
       messageContent: "Сделай мне кофе, пожалуйста",
       messageType: "sender",
-      time: "21:41"),
-  ChatMessage(messageContent: "Окей", messageType: "receiver", time: "21:41"
-      // timestamp: DateTime.now().add(Duration(minutes: 5)), // Example: 5 minutes later
-      ),
+      time: "27.01.22",
+      time1: 'Сегодня'),
   ChatMessage(
-      messageContent: "Уже сделал?", messageType: "sender", time: "21:41"
-      // timestamp: DateTime.now().add(Duration(minutes: 10)), // Example: 10 minutes later
-      ),
+      messageContent: "Окей",
+      messageType: "receiver",
+      time: "27.01.22",
+      time1: 'Сегодня'),
+  ChatMessage(
+      messageContent: "Уже сделал?",
+      messageType: "sender",
+      time: "27.01.22",
+      time1: 'Сегодня'),
 ];

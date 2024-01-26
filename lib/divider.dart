@@ -6,7 +6,7 @@ class DateDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       width: double.infinity,
       child: Row(
@@ -15,13 +15,13 @@ class DateDivider extends StatelessWidget {
           Container(
             height: 1,
             width: MediaQuery.of(context).size.width - 280,
-            color: Color.fromRGBO(237, 242, 246, 1),
+            color: const Color.fromRGBO(237, 242, 246, 1),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18.0),
             child: Text(
               date,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 color: Color.fromRGBO(157, 183, 203, 1),
               ),
@@ -30,7 +30,7 @@ class DateDivider extends StatelessWidget {
           Container(
             height: 1,
             width: MediaQuery.of(context).size.width - 280,
-            color: Color.fromRGBO(237, 242, 246, 1),
+            color: const Color.fromRGBO(237, 242, 246, 1),
           ),
         ],
       ),

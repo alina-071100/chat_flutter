@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/DateDivider.dart';
-import 'package:flutter_application/coversation_list.dart';
+import 'package:flutter_application/divider.dart';
 import 'package:flutter_application/models/chat_message.dart';
 
 class ChatDetailPage extends StatefulWidget {
-  const ChatDetailPage({super.key});
+  String name;
+  String surname;
+  String messageText;
+  ChatDetailPage({
+    Key? key,
+    required this.name,
+    required this.surname,
+    required this.messageText,
+  }) : super(key: key);
 
   @override
   _ChatDetailPageState createState() => _ChatDetailPageState();
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
-  late final ConversationList conversationList;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,32 +43,32 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     width: 2,
                   ),
                   CircleAvatar(
-                    // child: Center(
-                    //   child: Text(
-                    //       '${widget.name.characters.first}${widget.surname.characters.first}',
-                    //       style: TextStyle(
-                    //         fontSize: 20,
-                    //         fontWeight: FontWeight.w700,
-                    //         color: Colors.white,
-                    //       ),
-                    //       ),
-                    // ),
+                    child: Center(
+                      child: Text(
+                        '${widget.name.characters.first}${widget.surname.characters.first}',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                     maxRadius: 25,
                   ),
                   const SizedBox(
                     width: 12,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Виктор Власов",
-                          style: TextStyle(
+                          '${widget.name.characters} ${widget.surname.characters}',
+                          style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w600),
                         ),
-                        Text(
+                        const Text(
                           "В сети",
                           style:
                               TextStyle(color: Color(0xFF5E7A90), fontSize: 12),
@@ -78,95 +83,112 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         ),
         body: Stack(
           children: <Widget>[
-            ListView.builder(
-              itemCount: messages.length,
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return Column(
-                    children: [
-                      DateDivider(
-                        date: messages.first.time,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(
-                            left: 14, right: 14, top: 10, bottom: 10),
-                        child: Align(
-                          alignment: (messages[index].messageType == "receiver"
-                              ? Alignment.topLeft
-                              : Alignment.topRight),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  messages[index].messageType == 'receiver'
-                                      ? const BorderRadius.only(
-                                          topLeft: Radius.circular(30),
-                                          topRight: Radius.circular(30),
-                                          bottomLeft: Radius.circular(0),
-                                          bottomRight: Radius.circular(30))
-                                      : const BorderRadius.only(
-                                          topLeft: Radius.circular(30),
-                                          topRight: Radius.circular(30),
-                                          bottomLeft: Radius.circular(30),
-                                          bottomRight: Radius.circular(0)),
-                              color: (messages[index].messageType == "receiver"
-                                  ? const Color(0xFFEDF2F6)
-                                  : const Color(0xFF3CED78)),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 80),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ListView.builder(
+                    itemCount: messages.length,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    itemBuilder: (context, index) {
+                      if (index == 0) {
+                        return Column(
+                          children: [
+                            DateDivider(
+                              date: messages.first.time,
                             ),
-                            padding: const EdgeInsets.all(16),
-                            child: Text(
-                              messages[index].messageContent,
-                              style: const TextStyle(fontSize: 15),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 14, right: 14, top: 10, bottom: 10),
+                              child: Align(
+                                alignment:
+                                    (messages[index].messageType == "receiver"
+                                        ? Alignment.topLeft
+                                        : Alignment.topRight),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: messages[index].messageType ==
+                                            'receiver'
+                                        ? const BorderRadius.only(
+                                            topLeft: Radius.circular(30),
+                                            topRight: Radius.circular(30),
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(30))
+                                        : const BorderRadius.only(
+                                            topLeft: Radius.circular(30),
+                                            topRight: Radius.circular(30),
+                                            bottomLeft: Radius.circular(30),
+                                            bottomRight: Radius.circular(0)),
+                                    color: (messages[index].messageType ==
+                                            "receiver"
+                                        ? const Color(0xFFEDF2F6)
+                                        : const Color(0xFF3CED78)),
+                                  ),
+                                  padding: const EdgeInsets.all(16),
+                                  child: Text(
+                                    messages[index].messageContent,
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                } else {
-                  // Your existing message container here
-                  return Container(
-                    padding: const EdgeInsets.only(
-                        left: 14, right: 14, top: 10, bottom: 10),
-                    child: Align(
-                      alignment: (messages[index].messageType == "receiver"
-                          ? Alignment.topLeft
-                          : Alignment.topRight),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              messages[index].messageType == 'receiver'
-                                  ? const BorderRadius.only(
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(30),
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(30))
-                                  : const BorderRadius.only(
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(30),
-                                      bottomLeft: Radius.circular(30),
-                                      bottomRight: Radius.circular(0)),
-                          color: (messages[index].messageType == "receiver"
-                              ? const Color(0xFFEDF2F6)
-                              : const Color(0xFF3CED78)),
-                        ),
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          messages[index].messageContent,
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              },
+                          ],
+                        );
+                      } else {
+                        return Column(
+                          children: [
+                            DateDivider(
+                              date: messages.first.time1,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 14, right: 14, top: 10, bottom: 10),
+                              child: Align(
+                                alignment:
+                                    (messages[index].messageType == "receiver"
+                                        ? Alignment.topLeft
+                                        : Alignment.topRight),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: messages[index].messageType ==
+                                            'receiver'
+                                        ? const BorderRadius.only(
+                                            topLeft: Radius.circular(30),
+                                            topRight: Radius.circular(30),
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(30))
+                                        : const BorderRadius.only(
+                                            topLeft: Radius.circular(30),
+                                            topRight: Radius.circular(30),
+                                            bottomLeft: Radius.circular(30),
+                                            bottomRight: Radius.circular(0)),
+                                    color: (messages[index].messageType ==
+                                            "receiver"
+                                        ? const Color(0xFFEDF2F6)
+                                        : const Color(0xFF3CED78)),
+                                  ),
+                                  padding: const EdgeInsets.all(16),
+                                  child: Text(
+                                    messages[index].messageContent,
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                padding: EdgeInsets.only(left: 20, bottom: 10, top: 10),
+                padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
                 height: 60,
                 width: double.infinity,
                 color: Colors.white,
@@ -187,28 +209,29 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: "Сообщение",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: Color(0xFF9DB7CB),
                             fontSize: 16,
                             fontWeight: FontWeight.w500),
                         filled: true,
-                        fillColor: Color(0xFFEDF2F6),
-                        contentPadding: EdgeInsets.all(8),
+                        fillColor: const Color(0xFFEDF2F6),
+                        contentPadding: const EdgeInsets.all(8),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Color(0xFFEDF2F6)),
+                          borderSide:
+                              const BorderSide(color: Color(0xFFEDF2F6)),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Padding(
@@ -221,10 +244,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                             height: 42,
                             width: 42,
                             decoration: BoxDecoration(
-                              color: Color(0xFFEDF2F6),
+                              color: const Color(0xFFEDF2F6),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.mic_none,
                               color: Colors.black,
                               size: 25,

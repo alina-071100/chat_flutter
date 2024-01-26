@@ -39,6 +39,7 @@ dependencies:
   apptex_chat: ^2.0.0
   web_socket_channel: ^2.4.0
   flutter_svg: ^2.0.9
+  google_fonts: ^6.1.0
 
 
 dev_dependencies:
