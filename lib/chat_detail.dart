@@ -43,17 +43,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     width: 2,
                   ),
                   CircleAvatar(
+                    maxRadius: 25,
                     child: Center(
                       child: Text(
                         '${widget.name.characters.first}${widget.surname.characters.first}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
                         ),
                       ),
                     ),
-                    maxRadius: 25,
                   ),
                   const SizedBox(
                     width: 12,

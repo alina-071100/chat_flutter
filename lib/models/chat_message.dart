@@ -15,6 +15,7 @@ class ChatMessage {
 }
 
 List<ChatMessage> messages = [
+
   ChatMessage(
       messageContent: "Сделай мне кофе, пожалуйста",
       messageType: "sender",
